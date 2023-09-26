@@ -86,6 +86,125 @@ class MyCard extends LitElement {
 
   static styles = css`
     /* Your CSS styles here */
+    .cardcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  background-color: orange;
+}
+
+.card {
+  text-align: center;
+  max-width: 400px;
+  border: 8px solid #ccc;
+  border-color: magenta;
+  margin: 8px;
+  background-color: pink;
+  transition: background-color 0.3s ease;
+}
+
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.card img {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 8px solid magenta;
+}
+.card-content {
+  padding: 20px;
+}
+
+p {
+  font-size: 18px;
+}
+
+  #hideButton {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+#hideButton span {
+  display: inline-block;
+  padding: 20px 40px;
+}
+
+#hideButton:hover {
+  color: black;
+  background-color: gold; /* Change the background color on hover */
+}
+  
+  
+ 
+//Buttons below Card//
+  
+  #duplicateButton:focus, #duplicateButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #toggleButton:focus,#toggleButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: orange;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #changeHeadingButton:focus, #changeHeadingButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: yellow;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #removeDuplicate:focus, #removeDuplicate:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+   
+/* Media query to hide the details button on screens 800px and below */
+@media only screen and (max-width: 800px) {
+  #hideButton {
+    display: none; /* Hide the summary button for screens 800px and below */
+  }
+}
+
+/* always put media query last */
+
   `;
 
   render() {
