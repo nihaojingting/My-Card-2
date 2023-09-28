@@ -7,6 +7,11 @@ class MyCard extends LitElement {
     header: { type: String },
   };
 
+  constructor() {
+    super();
+    this.header = 'My app';
+  }
+
   render() {
     return html`
       <div class="cardcontainer" id="cardcontainer">
@@ -73,11 +78,6 @@ static styles = css`
     margin-left: 5px;
   }
 `;
-
-constructor() {
-  super();
-  this.header = 'My app';
-}
 
 duplicateButton() {
   //THE DUPLICATING BUTTON STUFF
