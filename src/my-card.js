@@ -25,7 +25,7 @@ class MyCard extends LitElement {
       </div>
       <!-- Buttons -->
       <button id="duplicateButton" @click=${this.duplicateButton}>Duplicate Card</button>
-      <button id="toggleButton" @click=${this.toggleButton}></button>Toggle Background</button>
+      <button id="toggleButton" @click=${this.toggleButton}>Toggle Background</button>
       <button id="changeHeadingButton" @click=${this.changeHeadingButton}>Change Heading</button>
       <button id="removeDuplicate" @click=${this.removeDuplicate}>Remove A Card</button>
     `;
@@ -121,7 +121,6 @@ removeDuplicate() {
 
 const removeDuplicate = document.getElementById('removeDuplicate');
 
-removeDuplicate.addEventListener('click', (e) => {
   // Get all card elements within the container
   const cardcontainer = document.querySelector('.cardcontainer'); // Use '#cardcontainer' to select by ID
   const cards = cardcontainer.querySelectorAll('.card'); // Use querySelectorAll to select all matching elements
@@ -133,6 +132,5 @@ removeDuplicate.addEventListener('click', (e) => {
     const lastCard = cards[cards.length - 1];
     cardcontainer.removeChild(lastCard);
   }
-});
 }
 }
