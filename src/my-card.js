@@ -24,10 +24,10 @@ class MyCard extends LitElement {
         </div>
       </div>
       <!-- Buttons -->
-      <button id="duplicateButton">Duplicate Card</button>
-      <button id="toggleButton">Toggle Background</button>
-      <button id="changeHeadingButton">Change Heading</button>
-      <button id="removeDuplicate">Remove A Card</button>
+      <button id="duplicateButton" @click${this.duplicateButton}>Duplicate Card</button>
+      <button id="toggleButton" @click${this.toggleButton}></button>>Toggle Background</button>
+      <button id="changeHeadingButton" @click${this.changeHeadingButton}>>Change Heading</button>
+      <button id="removeDuplicate" @click${this.removeDuplicate}>>Remove A Card</button>
     `;
 }
 
@@ -79,103 +79,60 @@ constructor() {
   this.header = 'My app';
 }
 
-render() {
-  return html`
-    <main>
-      <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-      <h1>${this.header}</h1>
+duplicateButton() {
+  //THE DUPLICATING BUTTON STUFF
+  // Get the card element to duplicate
+  const originalCard = document.querySelector('.card');
 
-      <p>Edit <code>src/MyCard.js</code> and save to reload.</p>
-      <a
-        class="app-link"
-        href="https://open-wc.org/guides/developing-components/code-examples/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Code examples
-      </a>
-    </main>
+  // Target your card. Create a clone of the node (hint: .... whatever selector .cloneNode(true) )
+  
+  const clonedCard = originalCard.cloneNode(true);
 
-    <p class="app-footer">
-      🚽 Made with love by
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/open-wc"
-        >open-wc</a
-      >.
-    </p>
-  `;
+ //Append means to put data inside an element
+  // Append(add on) the cloned card, whic to the cardcontainer.
+  document.querySelector('.cardcontainer').appendChild(clonedCard);
 }
+toggleButton() {
+  // Get the first element with the class "card"
+  const card = document.querySelector('.card');
+  const toggleButton = document.getElementById('toggleButton');
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    // Define event listeners once in connectedCallback
-    this.shadowRoot.querySelector('#duplicateButton').addEventListener('click', () => {
-      this.duplicateCard();
-    });
-
-    this.shadowRoot.querySelector('#toggleButton').addEventListener('click', () => {
-      this.toggleBackground();
-    });
-
-    this.shadowRoot.querySelector('#changeHeadingButton').addEventListener('click', () => {
-      this.changeHeading();
-    });
-
-    this.shadowRoot.querySelector('#removeDuplicate').addEventListener('click', () => {
-      this.removeCard();
-    });
-  }
-
-  // Event handler for the "Duplicate Card" button
-  duplicateCard() {
-    // Implement your logic for duplicating the card here
-    // ...
-
-    // Example of adding a new card
-    const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
-    const originalCard = this.shadowRoot.querySelector('.card');
-    const clonedCard = originalCard.cloneNode(true);
-    cardContainer.appendChild(clonedCard);
-  }
-
-  // Event handler for the "Toggle Background" button
-  toggleBackground() {
-    // Implement your logic for toggling the background here
-    // ...
-
-    // Example of toggling background color
-    const card = this.shadowRoot.querySelector('.card');
+  if (card) {
+    // Toggle the background color
     if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
       card.style.backgroundColor = 'lightblue';
     } else {
       card.style.backgroundColor = 'pink';
     }
   }
+}
+changeHeadingButton() {
+  //CHANGE TEXT OF HEADING TO SOMETHING ELSE-INATOR
 
-  // Event handler for the "Change Heading" button
-  changeHeading() {
-    // Implement your logic for changing the heading here
-    // ...
+const heading = document.getElementById('heading');
+const changeTextButton = document.getElementById('changeHeadingButton');
 
-    // Example of changing the heading text
-    const heading = this.shadowRoot.querySelector('#heading');
-    heading.textContent = 'I really like bacon and cabbage lol';
+  // Change the text of the heading
+  heading.textContent = 'I really like bacon and cabbage lol';
+}
+
+removeDuplicate() {
+  //DELETE LAST INSTANCE CARD-INATOR
+
+const removeDuplicate = document.getElementById('removeDuplicate');
+
+removeDuplicate.addEventListener('click', (e) => {
+  // Get all card elements within the container
+  const cardcontainer = document.querySelector('.cardcontainer'); // Use '#cardcontainer' to select by ID
+  const cards = cardcontainer.querySelectorAll('.card'); // Use querySelectorAll to select all matching elements
+
+  // Checks for cards to remove
+  if (cards.length > 1) {
+    // Remove the last card in the list
+    // Removes 1 even if there is only 1
+    const lastCard = cards[cards.length - 1];
+    cardcontainer.removeChild(lastCard);
   }
-
-  // Event handler for the "Remove A Card" button
-  removeCard() {
-    // Implement your logic for removing a card here
-    // ...
-
-    // Example of removing the last card
-    const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
-    const cards = cardContainer.querySelectorAll('.card');
-    if (cards.length > 1) {
-      const lastCard = cards[cards.length - 1];
-      cardContainer.removeChild(lastCard);
-    }
-  }
-};
+});
+}
+}
