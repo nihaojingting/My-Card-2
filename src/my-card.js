@@ -108,74 +108,74 @@ render() {
   `;
 }
 
-  // connectedCallback() {
-  //   super.connectedCallback();
+  connectedCallback() {
+    super.connectedCallback();
 
-  //   // Define event listeners once in connectedCallback
-  //   this.shadowRoot.querySelector('#duplicateButton').addEventListener('click', () => {
-  //     this.duplicateCard();
-  //   });
+    // Define event listeners once in connectedCallback
+    this.shadowRoot.querySelector('#duplicateButton').addEventListener('click', () => {
+      this.duplicateCard();
+    });
 
-  //   this.shadowRoot.querySelector('#toggleButton').addEventListener('click', () => {
-  //     this.toggleBackground();
-  //   });
+    this.shadowRoot.querySelector('#toggleButton').addEventListener('click', () => {
+      this.toggleBackground();
+    });
 
-  //   this.shadowRoot.querySelector('#changeHeadingButton').addEventListener('click', () => {
-  //     this.changeHeading();
-  //   });
+    this.shadowRoot.querySelector('#changeHeadingButton').addEventListener('click', () => {
+      this.changeHeading();
+    });
 
-  //   this.shadowRoot.querySelector('#removeDuplicate').addEventListener('click', () => {
-  //     this.removeCard();
-  //   });
-  // }
+    this.shadowRoot.querySelector('#removeDuplicate').addEventListener('click', () => {
+      this.removeCard();
+    });
+  }
 
-  // // Event handler for the "Duplicate Card" button
-  // duplicateCard() {
-  //   // Implement your logic for duplicating the card here
-  //   // ...
+  // Event handler for the "Duplicate Card" button
+  duplicateCard() {
+    // Implement your logic for duplicating the card here
+    // ...
 
-  //   // Example of adding a new card
-  //   const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
-  //   const originalCard = this.shadowRoot.querySelector('.card');
-  //   const clonedCard = originalCard.cloneNode(true);
-  //   cardContainer.appendChild(clonedCard);
-  // }
+    // Example of adding a new card
+    const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
+    const originalCard = this.shadowRoot.querySelector('.card');
+    const clonedCard = originalCard.cloneNode(true);
+    cardContainer.appendChild(clonedCard);
+  }
 
-  // // Event handler for the "Toggle Background" button
-  // toggleBackground() {
-  //   // Implement your logic for toggling the background here
-  //   // ...
+  // Event handler for the "Toggle Background" button
+  toggleBackground() {
+    // Implement your logic for toggling the background here
+    // ...
 
-  //   // Example of toggling background color
-  //   const card = this.shadowRoot.querySelector('.card');
-  //   if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-  //     card.style.backgroundColor = 'lightblue';
-  //   } else {
-  //     card.style.backgroundColor = 'pink';
-  //   }
-  // }
+    // Example of toggling background color
+    const card = this.shadowRoot.querySelector('.card');
+    if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
+      card.style.backgroundColor = 'lightblue';
+    } else {
+      card.style.backgroundColor = 'pink';
+    }
+  }
 
-  // // Event handler for the "Change Heading" button
-  // changeHeading() {
-  //   // Implement your logic for changing the heading here
-  //   // ...
+  // Event handler for the "Change Heading" button
+  changeHeading() {
+    // Implement your logic for changing the heading here
+    // ...
 
-  //   // Example of changing the heading text
-  //   const heading = this.shadowRoot.querySelector('#heading');
-  //   heading.textContent = 'I really like bacon and cabbage lol';
-  // }
+    // Example of changing the heading text
+    const heading = this.shadowRoot.querySelector('#heading');
+    heading.textContent = 'I really like bacon and cabbage lol';
+  }
 
-  // // Event handler for the "Remove A Card" button
-  // removeCard() {
-  //   // Implement your logic for removing a card here
-  //   // ...
+  // Event handler for the "Remove A Card" button
+  removeCard() {
+    // Implement your logic for removing a card here
+    // ...
 
-  //   // Example of removing the last card
-  //   const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
-  //   const cards = cardContainer.querySelectorAll('.card');
-  //   if (cards.length > 1) {
-  //     const lastCard = cards[cards.length - 1];
-  //     cardContainer.removeChild(lastCard);
-  //   }
-  // }
+    // Example of removing the last card
+    const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
+    const cards = cardContainer.querySelectorAll('.card');
+    if (cards.length > 1) {
+      const lastCard = cards[cards.length - 1];
+      cardContainer.removeChild(lastCard);
+    }
+  }
 };
