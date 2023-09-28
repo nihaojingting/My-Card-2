@@ -231,121 +231,73 @@ p {
     `;
 }
 
+connectedCallback() {
+  super.connectedCallback();
+
+  // Define event listeners once in connectedCallback
+  this.shadowRoot.querySelector('#duplicateButton').addEventListener('click', () => {
+    this.duplicateCard();
+  });
+
+  this.shadowRoot.querySelector('#toggleButton').addEventListener('click', () => {
+    this.toggleBackground();
+  });
+
+  this.shadowRoot.querySelector('#changeHeadingButton').addEventListener('click', () => {
+    this.changeHeading();
+  });
+
+  this.shadowRoot.querySelector('#removeDuplicate').addEventListener('click', () => {
+    this.removeCard();
+  });
+}
+
 // Event handler for the "Duplicate Card" button
 duplicateCard() {
-// Implement your logic for duplicating the card here
+  // Implement your logic for duplicating the card here
+  // ...
 
-//THE DUPLICATING BUTTON STUFF
-
-document.getElementById('duplicateButton').addEventListener('click', (e) => {
-  // Get the card element to duplicate
-  const originalCard = document.querySelector('.card');
-
-  // Target your card. Create a clone of the node (hint: .... whatever selector .cloneNode(true) )
-  
+  // Example of adding a new card
+  const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
+  const originalCard = this.shadowRoot.querySelector('.card');
   const clonedCard = originalCard.cloneNode(true);
-
- //Append means to put data inside an element
-  // Append(add on) the cloned card, whic to the cardcontainer.
-  document.querySelector('.cardcontainer').appendChild(clonedCard);
-});
+  cardContainer.appendChild(clonedCard);
 }
 
 // Event handler for the "Toggle Background" button
 toggleBackground() {
-// Implement your logic for toggling the background here
+  // Implement your logic for toggling the background here
+  // ...
 
-//THE BACKGROUND TOGGLER-INATOR
-document.addEventListener('DOMContentLoaded', function() {
-  //ASK why is it card here and not .card
-  const card = document.getElementById('card');
-  const toggleButton = document.getElementById('toggleButton');
-
-  toggleButton.addEventListener('click', (e) => {
-    // Toggle the background color
-    if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-      card.style.backgroundColor = 'lightblue';
-    } else {
-      card.style.backgroundColor = 'pink';
-    }
-  });
-});
+  // Example of toggling background color
+  const card = this.shadowRoot.querySelector('.card');
+  if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
+    card.style.backgroundColor = 'lightblue';
+  } else {
+    card.style.backgroundColor = 'pink';
+  }
 }
 
 // Event handler for the "Change Heading" button
 changeHeading() {
-// Implement your logic for changing the heading here
+  // Implement your logic for changing the heading here
+  // ...
 
-//CHANGE TEXT OF HEADING TO SOMETHING ELSE-INATOR
-
-const heading = document.getElementById('heading');
-const changeTextButton = document.getElementById('changeHeadingButton');
-
-changeHeadingButton.addEventListener('click', (e) => {
-  // Change the text of the heading
+  // Example of changing the heading text
+  const heading = this.shadowRoot.querySelector('#heading');
   heading.textContent = 'I really like bacon and cabbage lol';
-});
-
-
 }
 
 // Event handler for the "Remove A Card" button
 removeCard() {
-// Implement your logic for removing a card here
+  // Implement your logic for removing a card here
+  // ...
 
-//DELETE LAST INSTANCE CARD-INATOR
-
-const removeDuplicate = document.getElementById('removeDuplicate');
-
-removeDuplicate.addEventListener('click', (e) => {
-  // Get all card elements within the container
-  const cardcontainer = document.querySelector('.cardcontainer'); // Use '#cardcontainer' to select by ID
-  const cards = cardcontainer.querySelectorAll('.card'); // Use querySelectorAll to select all matching elements
-
-  // Checks for cards to remove
+  // Example of removing the last card
+  const cardContainer = this.shadowRoot.querySelector('.cardcontainer');
+  const cards = cardContainer.querySelectorAll('.card');
   if (cards.length > 1) {
-    // Remove the last card in the list
-    // Removes 1 even if there is only 1
     const lastCard = cards[cards.length - 1];
-    cardcontainer.removeChild(lastCard);
+    cardContainer.removeChild(lastCard);
   }
-});
-
-const paragraph = document.getElementById('paragraph');
-const hideButton = document.getElementById('hideButton');
-
-hideButton.addEventListener('click', function() {
-  // Toggle the visibility of the paragraph
-  if (paragraph.style.display === 'none' || paragraph.style.display === '') {
-     // Shows the paragraph
-    paragraph.style.display = 'block';
-  } else {
-    // Hide the paragraph
-    paragraph.style.display = 'none';
-  }
-});
-}
-
-// Add event listeners to the buttons in the connectedCallback
-connectedCallback() {
-super.connectedCallback();
-
-this.shadowRoot.getElementById('duplicateButton').addEventListener('click', () => {
-this.duplicateCard();
-});
-
-this.shadowRoot.getElementById('toggleButton').addEventListener('click', () => {
-this.toggleBackground();
-});
-
-this.shadowRoot.getElementById('changeHeadingButton').addEventListener('click', () => {
-this.changeHeading();
-});
-
-this.shadowRoot.getElementById('removeDuplicate').addEventListener('click', () => {
-this.removeCard();
-});
-}
-}
-
-customElements.define('my-card', MyCard);
+}};
