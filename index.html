@@ -9,45 +9,124 @@
 
   <style>
     css,
-  :host {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: calc(10px + 2vmin);
-    color: #1a2b42;
-    max-width: 960px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: var(--my-card-background-color);
-  }
+    body {
+      .cardcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  main {
-    flex-grow: 1;
-  }
+img {
+  width: 200px;
+  height: 200px;
+  background-color: orange;
+}
 
-  .logo {
-    margin-top: 36px;
-    animation: app-logo-spin infinite 20s linear;
-  }
+.card {
+  text-align: center;
+  max-width: 400px;
+  border: 8px solid #ccc;
+  border-color: magenta;
+  margin: 8px;
+  background-color: pink;
+  transition: background-color 0.3s ease;
+}
 
-  @keyframes app-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
 
-  .app-footer {
-    font-size: calc(12px + 0.5vmin);
-    align-items: center;
-  }
+h2 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
 
-  .app-footer a {
-    margin-left: 5px;
+.card img {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 8px solid magenta;
+}
+.card-content {
+  padding: 20px;
+}
+
+p {
+  font-size: 18px;
+}
+
+  #hideButton {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+#hideButton span {
+  display: inline-block;
+  padding: 20px 40px;
+}
+
+#hideButton:hover {
+  color: black;
+  background-color: gold; /* Change the background color on hover */
+}
+  
+
+  
+  #duplicateButton:focus, #duplicateButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #toggleButton:focus,#toggleButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: orange;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #changeHeadingButton:focus, #changeHeadingButton:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: yellow;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+  
+  #removeDuplicate:focus, #removeDuplicate:hover {
+  font-size: 36px;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  }
+   
+/* Media query to hide the details button on screens 800px and below */
+@media only screen and (max-width: 800px) {
+  #hideButton {
+    display: none; /* Hide the summary button for screens 800px and below */
+  }
+}
+
+/* always put media query last */
+
     }
   </style>
   <title>my-card</title>
@@ -60,7 +139,7 @@
     
   </my-card>
 
-
+//declarations here
 
   <script type="module" src="./src/my-card.js"></script>
 </body>
