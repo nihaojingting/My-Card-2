@@ -28,7 +28,6 @@ class MyCard extends LitElement {
 </details>
             <!-- hide paragraph button -->
             <button class="button" id="hideButton">Details</button>
-            //details summary
           </div>
         </div>
       </div>
