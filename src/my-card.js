@@ -23,7 +23,7 @@ class MyCard extends LitElement {
           <div class="card-content">
             <!-- body paragraph -->
             <details>
-  <summary>Lil'summary</summary>
+  <summary>Summary</summary>
   <p id="paragraph">Hi my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage.</p>
 </details>
             <!-- hide paragraph button -->
