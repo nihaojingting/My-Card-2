@@ -1,208 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Card</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+  <base href="/">
 
-    <!-- Styles from the second HTML file -->
-    <style>
-        css,
-        body {
-            .cardcontainer {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-            }
-
-            img {
-                width: 200px;
-                height: 200px;
-                background-color: orange;
-            }
-
-            .card {
-                text-align: center;
-                max-width: 400px;
-                border: 8px solid #ccc;
-                border-color: magenta;
-                margin: 8px;
-                background-color: pink;
-                transition: background-color 0.3s ease;
-            }
-
-            h2 {
-                font-size: 36px;
-                margin-bottom: 8px;
-            }
-
-            .card img {
-                max-width: 90%;
-                margin-left: auto;
-                margin-right: auto;
-                border: 8px solid magenta;
-            }
-
-            .card-content {
-                padding: 20px;
-            }
-
-            p {
-                font-size: 18px;
-            }
-
-            #hideButton {
-                font-size: 36px;
-                display: inline-block;
-                padding: 8px 16px;
-                background-color: red;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-            }
-
-            #hideButton span {
-                display: inline-block;
-                padding: 20px 40px;
-            }
-
-            #hideButton:hover {
-                color: black;
-                background-color: gold;
-            }
-
-            #duplicateButton:focus, #duplicateButton:hover {
-                font-size: 36px;
-                display: inline-block;
-                padding: 8px 16px;
-                background-color: red;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                margin-top: 10px;
-            }
-
-            #toggleButton:focus, #toggleButton:hover {
-                font-size: 36px;
-                display: inline-block;
-                padding: 8px 16px;
-                background-color: orange;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                margin-top: 10px;
-            }
-
-            #changeHeadingButton:focus, #changeHeadingButton:hover {
-                font-size: 36px;
-                display: inline-block;
-                padding: 8px 16px;
-                background-color: yellow;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                margin-top: 10px;
-            }
-
-            #removeDuplicate:focus, #removeDuplicate:hover {
-                font-size: 36px;
-                display: inline-block;
-                padding: 8px 16px;
-                background-color: green;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                margin-top: 10px;
-            }
-
-            /* Media query to hide the details button on screens 800px and below */
-            @media only screen and (max-width: 800px) {
-                #hideButton {
-                    display: none; /* Hide the summary button for screens 800px and below */
-                }
-            }
-        }
-    </style>
-
-    <!-- LitElement JavaScript code from the first HTML file -->
-    <script type="module">
-        import { LitElement, html, css } from 'lit';
-
-        class MyCard extends LitElement {
-            static properties = {
-                header: { type: String },
-            };
-
-            constructor() {
-                super();
-                this.header = 'My app';
-            }
-
-            render() {
-                return html`
-                    <!-- Your HTML template here -->
-
-                    <!-- Buttons -->
-                    <button id="duplicateButton" @click=${this.duplicateButton}>Duplicate Card</button>
-                    <button id="toggleButton" @click=${this.toggleButton}>Toggle Background</button>
-                    <button id="changeHeadingButton" @click=${this.changeHeadingButton}>Change Heading</button>
-                    <button id="removeDuplicate" @click=${this.removeDuplicate}>Remove A Card</button>
-                `;
-            }
-
-            duplicateButton() {
-                // Get the card element to duplicate
-                const originalCard = document.querySelector('.card');
-
-                // Target your card. Create a clone of the node
-                const clonedCard = originalCard.cloneNode(true);
-
-                // Append the cloned card to the card container
-                document.querySelector('.cardcontainer').appendChild(clonedCard);
-            }
-
-            toggleButton() {
-                // Get the first element with the class "card"
-                const card = document.querySelector('.card');
-
-                if (card) {
-                    // Toggle the background color
-                    if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-                        card.style.backgroundColor = 'lightblue';
-                    } else {
-                        card.style.backgroundColor = 'pink';
-                    }
-                }
-            }
-
-            changeHeadingButton() {
-                // Change text of heading
-                const heading = document.getElementById('heading');
-                if (heading) {
-                    heading.textContent = 'I really like bacon and cabbage lol';
-                }
-            }
-
-            removeDuplicate() {
-                // Get all card elements within the container
-                const cardcontainer = document.querySelector('.cardcontainer');
-                const cards = cardcontainer.querySelectorAll('.card');
-
-                // Checks for cards to remove
-                if (cards.length > 1) {
-                    // Remove the last card in the list
-                    const lastCard = cards[cards.length - 1];
-                    cardcontainer.removeChild(lastCard);
-                }
-            }
-        }
-
-        customElements.define('my-card', MyCard);
-    </script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>my-card</title>
 </head>
+
 <body>
-    <my-card>
-        <!-- button stuff here -->
-    </my-card>
+  <my-card>
+    //button stuff here
+
+    
+  </my-card>
+
+//declarations here
+
+  <script type="module" src="./src/my-card.js"></script>
 </body>
+
 </html>

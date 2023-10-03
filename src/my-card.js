@@ -22,12 +22,10 @@ class MyCard extends LitElement {
           <img src="https://i.imgur.com/XPC2j0i.jpg" alt="Card Image">
           <div class="card-content">
             <!-- body paragraph -->
-            <details>
-  <summary>LitleSummary</summary>
-  <p id="paragraph">Hi my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage.</p>
-</details>
+            <p id="paragraph">Hi my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage. I also like bacon. I really like eating but it gives me food coma. Bygolly, what a dilemma.</p>  
             <!-- hide paragraph button -->
             <button class="button" id="hideButton">Details</button>
+            //details summary
           </div>
         </div>
       </div>
