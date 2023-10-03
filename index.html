@@ -1,34 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JingTing Card</title>
+    <style>
+        .cardcontainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
 
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
-  <title>my-card</title>
+        img {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        .card {
+            text-align: center;
+            max-width: 400px;
+            border: 8px solid #ccc;
+            border-color: magenta;
+            margin: 8px;
+            background-color: pink;
+            transition: background-color 0.3s ease;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .card img {
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            border: 8px solid magenta;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .button {
+            font-size: 36px;
+            display: inline-block;
+            padding: 8px 16px;
+            border: none;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: gold;
+        }
+
+        /* Media query to hide the details button on screens 800px and below */
+        @media only screen and (max-width: 800px) {
+            .button#hideButton {
+                display: none;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <my-card>
-    //button stuff here
+    <div class="cardcontainer">
+        <div class="card">
+            <h2 id="heading">Jing-Ting Dong at the Library</h2>
+            <img src="https://i.imgur.com/XPC2j0i.jpg" alt="Card Image">
+            <div class="card-content">
+                <details>
+                    <summary>Summary</summary>
+                    <p id="paragraph">Hi, my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage.</p>
+                </details>
+                <button class="button" id="hideButton">Details</button>
+            </div>
+        </div>
+    </div>
 
-    
-  </my-card>
+    <button class="button" id="duplicateButton">Duplicate Card</button>
+    <button class="button" id="toggleButton">Toggle Background</button>
+    <button class="button" id="changeHeadingButton">Change Heading</button>
+    <button class="button" id="removeDuplicate">Remove A Card</button>
 
-//declarations here
+    <script>
+        const duplicateButton = document.getElementById('duplicateButton');
+        const toggleButton = document.getElementById('toggleButton');
+        const changeHeadingButton = document.getElementById('changeHeadingButton');
+        const removeDuplicateButton = document.getElementById('removeDuplicate');
 
-  <script type="module" src="./src/my-card.js"></script>
+        duplicateButton.addEventListener('click', () => {
+            // THE DUPLICATING BUTTON STUFF
+            // Get the card element to duplicate
+            const originalCard = document.querySelector('.card');
+
+            // Target your card. Create a clone of the node (hint: .... whatever selector .cloneNode(true) )
+            const clonedCard = originalCard.cloneNode(true);
+
+            // Append the cloned card to the card container
+            document.querySelector('.cardcontainer').appendChild(clonedCard);
+        });
+
+        toggleButton.addEventListener('click', () => {
+            // Get the first element with the class "card"
+            const card = document.querySelector('.card');
+
+            if (card) {
+                // Toggle the background color
+                if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
+                    card.style.backgroundColor = 'lightblue';
+                } else {
+                    card.style.backgroundColor = 'pink';
+                }
+            }
+        });
+
+        changeHeadingButton.addEventListener('click', () => {
+            // CHANGE TEXT OF HEADING TO SOMETHING ELSE-INATOR
+            const heading = document.getElementById('heading');
+
+            // Change the text of the heading
+            heading.textContent = 'I really like bacon and cabbage lol';
+        });
+
+        removeDuplicateButton.addEventListener('click', () => {
+            // DELETE LAST INSTANCE CARD-INATOR
+            // Get all card elements within the container
+            const cardcontainer = document.querySelector('.cardcontainer');
+            const cards = cardcontainer.querySelectorAll('.card');
+
+            // Checks for cards to remove
+            if (cards.length > 1) {
+                // Remove the last card in the list
+                const lastCard = cards[cards.length - 1];
+                cardcontainer.removeChild(lastCard);
+            }
+        });
+    </script>
 </body>
-
 </html>
