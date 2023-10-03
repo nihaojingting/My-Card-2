@@ -29,11 +29,6 @@ class MyCard extends LitElement {
           </div>
         </div>
       </div>
-      <!-- Buttons -->
-      <button id="duplicateButton" @click=${this.duplicateButton}>Duplicate Card</button>
-      <button id="toggleButton" @click=${this.toggleButton}>Toggle Background</button>
-      <button id="changeHeadingButton" @click=${this.changeHeadingButton}>Change Heading</button>
-      <button id="removeDuplicate" @click=${this.removeDuplicate}>Remove A Card</button>
     `;
 }
 
