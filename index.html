@@ -163,11 +163,16 @@ changeHeading(card) {
 }
 
             // Function to remove a card
-            removeCard(card) {
-                if (this.cardcontainer.children.length > 1) {
-                    this.cardcontainer.removeChild(card);
-                }
-            }
+removeCard(card) {
+    const cardCount = this.cardcontainer.querySelectorAll('.card').length;
+
+    if (cardCount > 1) {
+        this.cardcontainer.removeChild(card);
+    } else {
+        alert("You must keep at least one card.");
+    }
+}
+
 
             // Setup event listeners for buttons
             setupListeners() {
