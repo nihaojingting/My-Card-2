@@ -91,7 +91,7 @@ p {
     </div>
     <button class="button" id="duplicateButton">Duplicate Card</button>
     <button class="button toggleButton">Toggle Background</button>
-    <button class="button changeHeadingButton">Change Heading</button>
+    <button class="button changeHeading">Change Heading</button>
     <button class="button removeDuplicate">Remove A Card</button>
 
     <script>
@@ -132,7 +132,7 @@ p {
                             this.toggleDescription(clonedCard);
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
-                        } else if (button.classList.contains('changeHeadingButton')) {
+                        } else if (button.classList.contains('changeHeading')) {
                             this.changeHeading(clonedCard);
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
