@@ -25,6 +25,11 @@ img {
     transition: background-color 0.3s ease;
 }
 
+/* Add a hover effect to change background color to red */
+.card:hover {
+    background-color: red;
+}
+
 h2 {
     font-size: 36px;
     margin-bottom: 8px;
@@ -143,15 +148,17 @@ p {
             }
 
             // Function to toggle the background color for a specific card
-            toggleBackground(card) {
-                if (card) {
-                    if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-                        card.style.backgroundColor = 'lightblue';
-                    } else {
-                        card.style.backgroundColor = 'pink';
-                    }
-                }
-            }
+            // Function to toggle the background color for a specific card
+toggleBackground(card) {
+    if (card) {
+        if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
+            card.style.backgroundColor = 'limegreen'; // Change the background color to lime green
+        } else {
+            card.style.backgroundColor = 'pink';
+        }
+    }
+}
+
 
             // Function to change the heading for a specific card
             changeHeading(card) {
