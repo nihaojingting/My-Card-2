@@ -162,23 +162,25 @@ p {
                 }
             }
 
-            // Function to remove a card
-            removeCard(card) {
-                const cardCount = this.cardcontainer.querySelectorAll('.card').length;
+            // Function to remove the last duplicated card
+removeLastDuplicate() {
+    const duplicatedCards = this.cardcontainer.querySelectorAll('.card');
+    const cardCount = duplicatedCards.length;
 
-                if (cardCount > 1) {
-                    this.cardcontainer.removeChild(card);
-                } else {
-                    alert("You must keep at least one card.");
-                }
-            }
+    if (cardCount > 1) {
+        const lastDuplicatedCard = duplicatedCards[cardCount - 1];
+        this.cardcontainer.removeChild(lastDuplicatedCard);
+    } else {
+        alert("You must keep at least one card.");
+    }
+}
 
             // Setup event listeners for buttons
             setupListeners() {
-                this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
-                document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
-                document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.originalCard));
-            }
+    this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
+    document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
+    document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeLastDuplicate());
+}
         }
 
         // Create a Card instance to manage the functionality
