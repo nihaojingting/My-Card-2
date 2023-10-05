@@ -91,6 +91,7 @@ p {
     </div>
     <button class="button" id="duplicateButton">Duplicate Card</button>
     <button class="button toggleButton">Toggle Background</button>
+    <input type="text" id="newHeadingInput" placeholder="Enter a new heading">
     <button class="button changeHeading">Change Heading</button>
     <button class="button removeDuplicate">Remove A Card</button>
 
@@ -154,13 +155,17 @@ p {
             }
 
 // Function to change the heading for a specific card
-async changeHeading(card) {
-    const newHeading = await prompt("Enter a new name for the heading:");
-    if (newHeading !== null) {
+changeHeading(card) {
+    const newHeadingInput = document.getElementById('newHeadingInput');
+    const newHeading = newHeadingInput.value.trim();
+
+    if (newHeading !== '') {
         const heading = card.querySelector('.heading');
         heading.textContent = newHeading;
+        newHeadingInput.value = ''; // Clear the input field
     }
 }
+
 
 
             // Function to remove a card
