@@ -1,150 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JingTing Card</title>
-    <style>
-        .cardcontainer {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
+<style>
+  /* Your CSS styles here */
+.cardcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
-        img {
-            width: 200px;
-            height: 200px;
-            background-color: orange;
-        }
+img {
+    width: 200px;
+    height: 200px;
+    background-color: orange;
+}
 
-        .card {
-            text-align: center;
-            max-width: 400px;
-            border: 8px solid #ccc;
-            border-color: magenta;
-            margin: 8px;
-            background-color: pink;
-            transition: background-color 0.3s ease;
-        }
+.card {
+    text-align: center;
+    max-width: 400px;
+    border: 8px solid #ccc;
+    border-color: magenta;
+    margin: 8px;
+    background-color: pink;
+    transition: background-color 0.3s ease;
+}
 
-        h2 {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
+h2 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
 
-        .card img {
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            border: 8px solid magenta;
-        }
+.card img {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 8px solid magenta;
+}
 
-        .card-content {
-            padding: 20px;
-        }
+.card-content {
+    padding: 20px;
+}
 
-        p {
-            font-size: 18px;
-        }
+p {
+    font-size: 18px;
+}
 
-        .button {
-            font-size: 36px;
-            display: inline-block;
-            padding: 8px 16px;
-            border: none;
-            background-color: red;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
+.button {
+    font-size: 36px;
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+}
 
-        .button:hover {
-            background-color: gold;
-        }
+.button:hover {
+    background-color: gold;
+}
 
-        /* Media query to hide the details button on screens 800px and below */
-        @media only screen and (max-width: 800px) {
-            .button#hideButton {
-                display: none;
-            }
-        }
-    </style>
+/* Define the 'hidden' class to hide the description */
+.hidden {
+    display: none;
+}
+
+/* Media query to hide the details button on screens 800px and below */
+@media only screen and (max-width: 800px) {
+    .button#hideButton {
+        display: none;
+    }
+}
+</style>
 </head>
 <body>
     <div class="cardcontainer">
-        <div class="card">
-            <h2 id="heading">Jing-Ting Dong at the Library</h2>
+        <!-- Original card -->
+        <div class="card" id="originalCard">
+            <h2 class="heading">Jing-Ting Dong at the Library</h2>
             <img src="https://i.imgur.com/XPC2j0i.jpg" alt="Card Image">
             <div class="card-content">
-                <details>
-                    <summary>Summary</summary>
-                    <p id="paragraph">Hi, my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage.</p>
-                </details>
-                <button class="button" id="hideButton">Details</button>
+                <div class="description hidden">
+                    <p>I really like cabbage and bacon lol</p>
+                </div>
+                <button class="button descButton">Toggle Description</button>
             </div>
         </div>
     </div>
-
     <button class="button" id="duplicateButton">Duplicate Card</button>
-    <button class="button" id="toggleButton">Toggle Background</button>
-    <button class="button" id="changeHeadingButton">Change Heading</button>
-    <button class="button" id="removeDuplicate">Remove A Card</button>
+    <button class="button toggleButton">Toggle Background</button>
+    <button class="button changeHeadingButton">Change Heading</button>
+    <button class="button removeDuplicate">Remove A Card</button>
 
     <script>
-        const duplicateButton = document.getElementById('duplicateButton');
-        const toggleButton = document.getElementById('toggleButton');
-        const changeHeadingButton = document.getElementById('changeHeadingButton');
-        const removeDuplicateButton = document.getElementById('removeDuplicate');
+        // Refactored code starts here
 
-        duplicateButton.addEventListener('click', () => {
-            // THE DUPLICATING BUTTON STUFF
-            // Get the card element to duplicate
-            const originalCard = document.querySelector('.card');
+        // Create a Card class for better organization
+        class Card {
+            constructor() {
+                this.originalCard = document.getElementById('originalCard');
+                this.setupListeners();
+            }
 
-            // Target your card. Create a clone of the node (hint: .... whatever selector .cloneNode(true) )
-            const clonedCard = originalCard.cloneNode(true);
+            // Function to toggle the description for a specific card
+            toggleDescription(card) {
+                const description = card.querySelector('.description');
+                const descButton = card.querySelector('.descButton');
 
-            // Append the cloned card to the card container
-            document.querySelector('.cardcontainer').appendChild(clonedCard);
-        });
-
-        toggleButton.addEventListener('click', () => {
-            // Get the first element with the class "card"
-            const card = document.querySelector('.card');
-
-            if (card) {
-                // Toggle the background color
-                if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-                    card.style.backgroundColor = 'lightblue';
+                if (description.classList.contains('hidden')) {
+                    description.classList.remove('hidden');
+                    descButton.textContent = 'Hide Description';
                 } else {
-                    card.style.backgroundColor = 'pink';
+                    description.classList.add('hidden');
+                    descButton.textContent = 'Toggle Description';
                 }
             }
-        });
 
-        changeHeadingButton.addEventListener('click', () => {
-            // CHANGE TEXT OF HEADING TO SOMETHING ELSE-INATOR
-            const heading = document.getElementById('heading');
+            // Function to duplicate a card
+            duplicateCard() {
+                const clonedCard = this.originalCard.cloneNode(true);
+                document.querySelector('.cardcontainer').appendChild(clonedCard);
 
-            // Change the text of the heading
-            heading.textContent = 'I really like bacon and cabbage lol';
-        });
-
-        removeDuplicateButton.addEventListener('click', () => {
-            // DELETE LAST INSTANCE CARD-INATOR
-            // Get all card elements within the container
-            const cardcontainer = document.querySelector('.cardcontainer');
-            const cards = cardcontainer.querySelectorAll('.card');
-
-            // Checks for cards to remove
-            if (cards.length > 1) {
-                // Remove the last card in the list
-                const lastCard = cards[cards.length - 1];
-                cardcontainer.removeChild(lastCard);
+                // Add event listeners to buttons in the duplicated card
+                const duplicatedButtons = clonedCard.querySelectorAll('.button');
+                duplicatedButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Customize button behavior here
+                        if (button.classList.contains('descButton')) {
+                            this.toggleDescription(clonedCard);
+                        } else if (button.classList.contains('toggleButton')) {
+                            this.toggleBackground(clonedCard); // Pass the cloned card
+                        } else if (button.classList.contains('changeHeadingButton')) {
+                            this.changeHeading(clonedCard);
+                        } else if (button.classList.contains('removeDuplicate')) {
+                            this.removeCard(clonedCard);
+                        }
+                    });
+                });
             }
-        });
+
+            // Function to toggle the background color for a specific card
+            toggleBackground(card) {
+                if (card) {
+                    if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
+                        card.style.backgroundColor = 'lightblue';
+                    } else {
+                        card.style.backgroundColor = 'pink';
+                    }
+                }
+            }
+
+            // Function to change the heading for a specific card
+            changeHeading(card) {
+                const heading = card.querySelector('.heading');
+                heading.textContent = 'I really like bacon and cabbage lol';
+            }
+
+            // Function to remove a card
+            removeCard(card) {
+                const cardcontainer = document.querySelector('.cardcontainer');
+                cardcontainer.removeChild(card);
+            }
+
+            // Setup event listeners for buttons
+            setupListeners() {
+                this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
+                document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
+            }
+        }
+
+        // Create a Card instance to manage the functionality
+        const card = new Card();
+        // Refactored code ends here
     </script>
 </body>
 </html>
