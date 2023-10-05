@@ -154,8 +154,11 @@ p {
 
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const heading = card.querySelector('.heading');
-                heading.textContent = 'I really like bacon and cabbage lol';
+                const newHeading = prompt("Enter a new name for the heading:");
+                if (newHeading !== null) {
+                    const heading = card.querySelector('.heading');
+                    heading.textContent = newHeading;
+                }
             }
 
             // Function to remove a card
