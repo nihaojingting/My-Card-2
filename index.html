@@ -154,14 +154,12 @@ p {
             }
 
             // Function to change the heading for a specific card
-changeHeading(card) {
-    // Add a prompt when the "Change Heading" button is clicked
-    const newHeading = prompt("Enter a new name for the heading:");
-    if (newHeading !== null) {
-        const heading = card.querySelector('.heading');
-        heading.textContent = newHeading;
-    }
+            changeHeading(card) {
+             const newHeading = "Hi LOL"; // Set the new heading text
+            const heading = card.querySelector('.heading');
+            heading.textContent = newHeading;
 }
+
 
             // Function to remove the last duplicated card
 removeLastDuplicate() {
