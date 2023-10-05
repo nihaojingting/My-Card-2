@@ -100,7 +100,7 @@ p {
         // Create a Card class for better organization
         class Card {
             constructor() {
-                this.originalCard = document.getElementById('originalCard');
+                this.cardcontainer = document.querySelector('.cardcontainer');
                 this.setupListeners();
             }
 
@@ -120,8 +120,8 @@ p {
 
             // Function to duplicate a card
             duplicateCard() {
-                const clonedCard = this.originalCard.cloneNode(true);
-                document.querySelector('.cardcontainer').appendChild(clonedCard);
+                const clonedCard = this.cardcontainer.querySelector('.card:last-child').cloneNode(true);
+                this.cardcontainer.appendChild(clonedCard);
 
                 // Add event listeners to buttons in the duplicated card
                 const duplicatedButtons = clonedCard.querySelectorAll('.button');
@@ -160,14 +160,15 @@ p {
 
             // Function to remove a card
             removeCard(card) {
-                const cardcontainer = document.querySelector('.cardcontainer');
-                cardcontainer.removeChild(card);
+                if (this.cardcontainer.children.length > 1) {
+                    this.cardcontainer.removeChild(card);
+                }
             }
 
             // Setup event listeners for buttons
             setupListeners() {
-                this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
+                document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
             }
         }
 
