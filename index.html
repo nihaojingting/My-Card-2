@@ -91,7 +91,6 @@ p {
     </div>
     <button class="button" id="duplicateButton">Duplicate Card</button>
     <button class="button toggleButton">Toggle Background</button>
-    <input type="text" id="newHeadingInput" placeholder="Enter a new heading">
     <button class="button changeHeading">Change Heading</button>
     <button class="button removeDuplicate">Remove A Card</button>
 
@@ -154,31 +153,25 @@ p {
                 }
             }
 
-// Function to change the heading for a specific card
-changeHeading(card) {
-    const newHeadingInput = document.getElementById('newHeadingInput');
-    const newHeading = newHeadingInput.value.trim();
-
-    if (newHeading !== '') {
-        const heading = card.querySelector('.heading');
-        heading.textContent = newHeading;
-        newHeadingInput.value = ''; // Clear the input field
-    }
-}
-
-
+            // Function to change the heading for a specific card
+            changeHeading(card) {
+                const newHeading = prompt("Enter a new name for the heading:");
+                if (newHeading !== null) {
+                    const heading = card.querySelector('.heading');
+                    heading.textContent = newHeading;
+                }
+            }
 
             // Function to remove a card
-removeCard(card) {
-    const cardCount = this.cardcontainer.querySelectorAll('.card').length;
+            removeCard(card) {
+                const cardCount = this.cardcontainer.querySelectorAll('.card').length;
 
-    if (cardCount > 1) {
-        this.cardcontainer.removeChild(card);
-    } else {
-        alert("You must keep at least one card.");
-    }
-}
-
+                if (cardCount > 1) {
+                    this.cardcontainer.removeChild(card);
+                } else {
+                    alert("You must keep at least one card.");
+                }
+            }
 
             // Setup event listeners for buttons
             setupListeners() {
