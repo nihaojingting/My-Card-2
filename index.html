@@ -153,14 +153,15 @@ p {
                 }
             }
 
-          // Function to change the heading for a specific card
-changeHeading(card) {
-    const newHeading = prompt("Enter a new name for the heading:");
+// Function to change the heading for a specific card
+async changeHeading(card) {
+    const newHeading = await prompt("Enter a new name for the heading:");
     if (newHeading !== null) {
         const heading = card.querySelector('.heading');
         heading.textContent = newHeading;
     }
 }
+
 
             // Function to remove a card
 removeCard(card) {
