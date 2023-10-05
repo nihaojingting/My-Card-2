@@ -101,6 +101,7 @@ p {
         class Card {
             constructor() {
                 this.cardcontainer = document.querySelector('.cardcontainer');
+                this.originalCard = document.getElementById('originalCard');
                 this.setupListeners();
             }
 
@@ -120,7 +121,7 @@ p {
 
             // Function to duplicate a card
             duplicateCard() {
-                const clonedCard = this.cardcontainer.querySelector('.card:last-child').cloneNode(true);
+                const clonedCard = this.originalCard.cloneNode(true);
                 this.cardcontainer.appendChild(clonedCard);
 
                 // Add event listeners to buttons in the duplicated card
@@ -152,14 +153,14 @@ p {
                 }
             }
 
-            // Function to change the heading for a specific card
-            changeHeading(card) {
-                const newHeading = prompt("Enter a new name for the heading:");
-                if (newHeading !== null) {
-                    const heading = card.querySelector('.heading');
-                    heading.textContent = newHeading;
-                }
-            }
+          // Function to change the heading for a specific card
+changeHeading(card) {
+    const newHeading = prompt("Enter a new name for the heading:");
+    if (newHeading !== null) {
+        const heading = card.querySelector('.heading');
+        heading.textContent = newHeading;
+    }
+}
 
             // Function to remove a card
             removeCard(card) {
@@ -170,8 +171,9 @@ p {
 
             // Setup event listeners for buttons
             setupListeners() {
+                this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
-                document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
+                document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.originalCard));
             }
         }
 
