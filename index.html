@@ -169,6 +169,7 @@ p {
                 const newHeading = headingInput.value;
                 const heading = card.querySelector('.heading');
                 heading.textContent = newHeading;
+                headingInput.style.display = 'none'; // Hide the input field after changing heading
             }
 
             // Function to remove a card
@@ -192,16 +193,14 @@ p {
                 document.querySelector('.changeHeading').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
                     const headingInput = originalCard.querySelector('#newHeadingInput');
-                    headingInput.style.display = 'inline-block';
-                    headingInput.focus();
+                    headingInput.style.display = 'inline-block'; // Show the input field
+                    headingInput.focus(); // Focus on the input field for user input
                 });
 
                 // Add event listener for the "Submit" button in the input field container
                 document.querySelector('.changeHeadingSubmit').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
                     this.changeHeading(originalCard);
-                    const headingInput = originalCard.querySelector('#newHeadingInput');
-                    headingInput.style.display = 'none';
                 });
 
                 // Add this event listener with a console.log statement
