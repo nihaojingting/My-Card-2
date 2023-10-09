@@ -166,7 +166,13 @@ p {
 
             // Function to remove a card
             removeCard(card) {
-                this.cardcontainer.removeChild(card);
+                const cardCount = this.cardcontainer.querySelectorAll('.card').length;
+    
+                if (cardCount > 1) {
+                    this.cardcontainer.removeChild(card);
+                } else {
+                    alert("You must keep at least one card.");
+                }
             }
 
             // Setup event listeners for buttons
