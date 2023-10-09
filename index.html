@@ -167,12 +167,22 @@ p {
             showChangeHeadingInput(card) {
                 const changeHeadingContainer = card.querySelector('.change-heading-container');
                 changeHeadingContainer.style.display = 'block';
+
+                // Add event listener to the submit button
+                const submitButton = card.querySelector('.changeHeadingSubmit');
+                submitButton.addEventListener('click', () => {
+                    this.changeHeading(card);
+                });
             }
 
             // Function to change the heading for a specific card
-            changeHeading(card, newHeading) {
+            changeHeading(card) {
+                const newHeadingInput = card.querySelector('#newHeadingInput');
+                const newHeading = newHeadingInput.value;
                 const heading = card.querySelector('.heading');
-                heading.textContent = newHeading; // Change the heading text directly
+                heading.textContent = newHeading;
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
+                changeHeadingContainer.style.display = 'none';
             }
 
             // Function to remove a card
@@ -191,12 +201,6 @@ p {
                 this.cardcontainer.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.cardcontainer.querySelector('.card:first-child')));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
-
-                // Add event listener for the "Change Heading" button
-                document.querySelector('.changeHeading').addEventListener('click', () => {
-                    const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    this.showChangeHeadingInput(originalCard);
-                });
 
                 // Add this event listener with a console.log statement
                 document.querySelector('.toggleButton').addEventListener('click', () => {
