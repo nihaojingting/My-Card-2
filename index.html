@@ -144,7 +144,7 @@ p {
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
                         } else if (button.classList.contains('changeHeading')) {
-                            this.showChangeHeadingInput(clonedCard);
+                            this.changeHeading(clonedCard);
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
                         }
@@ -163,26 +163,11 @@ p {
                 }
             }
 
-            // Function to show the input field for changing the heading
-            showChangeHeadingInput(card) {
-                const changeHeadingContainer = card.querySelector('.change-heading-container');
-                changeHeadingContainer.style.display = 'block';
-
-                // Add event listener to the submit button
-                const submitButton = card.querySelector('.changeHeadingSubmit');
-                submitButton.addEventListener('click', () => {
-                    this.changeHeading(card);
-                });
-            }
-
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const newHeadingInput = card.querySelector('#newHeadingInput');
-                const newHeading = newHeadingInput.value;
+                const newHeadingInput = card.querySelector('#newHeadingInput').value;
                 const heading = card.querySelector('.heading');
-                heading.textContent = newHeading;
-                const changeHeadingContainer = card.querySelector('.change-heading-container');
-                changeHeadingContainer.style.display = 'none';
+                heading.textContent = newHeadingInput;
             }
 
             // Function to remove a card
@@ -205,7 +190,8 @@ p {
                 // Add event listener for the "Change Heading" button
                 document.querySelector('.changeHeading').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    this.showChangeHeadingInput(originalCard);
+                    const changeHeadingContainer = originalCard.querySelector('.change-heading-container');
+                    changeHeadingContainer.style.display = 'block';
                 });
 
                 // Add this event listener with a console.log statement
