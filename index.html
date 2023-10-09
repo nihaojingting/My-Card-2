@@ -159,9 +159,11 @@ p {
 
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const newHeading = "Please work OMG"; // Set the new heading text
-                const heading = card.querySelector('.heading');
-                heading.textContent = newHeading;
+                const newHeading = prompt("Enter the new heading:"); // Prompt the user for a new heading
+                if (newHeading !== null) {
+                    const heading = card.querySelector('.heading');
+                    heading.textContent = newHeading;
+                }
             }
 
             // Function to remove a card
