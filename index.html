@@ -99,6 +99,12 @@ p {
     <button class="button changeHeading">Change Heading</button>
     <button class="button removeDuplicate">Remove A Card</button>
 
+    <!-- Input field and button for changing heading -->
+    <div class="change-heading-container" style="display: none;">
+        <input type="text" id="newHeadingInput" placeholder="Enter new heading">
+        <button class="button changeHeadingSubmit">Submit</button>
+    </div>
+
     <script>
         // Refactored code starts here
 
@@ -138,7 +144,7 @@ p {
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
                         } else if (button.classList.contains('changeHeading')) {
-                            this.changeHeading(clonedCard);
+                            this.showChangeHeadingInput(clonedCard);
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
                         }
@@ -157,19 +163,32 @@ p {
                 }
             }
 
+            // Function to show the input field for changing the heading
+            showChangeHeadingInput(card) {
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
+                changeHeadingContainer.style.display = 'block';
+
+                // Add event listener to the submit button
+                const submitButton = card.querySelector('.changeHeadingSubmit');
+                submitButton.addEventListener('click', () => {
+                    this.changeHeading(card);
+                });
+            }
+
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const newHeading = prompt("Enter the new heading:"); // Prompt the user for a new heading
-                if (newHeading !== null) {
-                    const heading = card.querySelector('.heading');
-                    heading.textContent = newHeading;
-                }
+                const newHeadingInput = card.querySelector('#newHeadingInput');
+                const newHeading = newHeadingInput.value;
+                const heading = card.querySelector('.heading');
+                heading.textContent = newHeading;
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
+                changeHeadingContainer.style.display = 'none';
             }
 
             // Function to remove a card
             removeCard(card) {
                 const cardCount = this.cardcontainer.querySelectorAll('.card').length;
-    
+
                 if (cardCount > 1) {
                     this.cardcontainer.removeChild(card);
                 } else {
@@ -182,7 +201,7 @@ p {
                 this.cardcontainer.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.cardcontainer.querySelector('.card:first-child')));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
-                
+
                 // Add this event listener with a console.log statement
                 document.querySelector('.toggleButton').addEventListener('click', () => {
                     console.log("Toggle Background button clicked");
