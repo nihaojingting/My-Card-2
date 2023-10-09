@@ -147,17 +147,17 @@ p {
                 });
             }
 
-            // Function to toggle the background color for a specific card
-            // Function to toggle the background color for a specific card
+// Function to toggle the background color for a specific card
 toggleBackground(card) {
     if (card) {
         if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
             card.style.backgroundColor = 'limegreen'; // Change the background color to lime green
         } else {
-            card.style.backgroundColor = 'pink';
+            card.style.removeProperty('background-color'); // Remove the inline background color style
         }
     }
 }
+
 
 
             // Function to change the heading for a specific card
