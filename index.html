@@ -165,9 +165,10 @@ p {
 
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const newHeadingInput = card.querySelector('#newHeadingInput').value;
+                const headingInput = card.querySelector('#newHeadingInput');
+                const newHeading = headingInput.value;
                 const heading = card.querySelector('.heading');
-                heading.textContent = newHeadingInput;
+                heading.textContent = newHeading;
             }
 
             // Function to remove a card
@@ -190,8 +191,17 @@ p {
                 // Add event listener for the "Change Heading" button
                 document.querySelector('.changeHeading').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    const changeHeadingContainer = originalCard.querySelector('.change-heading-container');
-                    changeHeadingContainer.style.display = 'block';
+                    const headingInput = originalCard.querySelector('#newHeadingInput');
+                    headingInput.style.display = 'inline-block';
+                    headingInput.focus();
+                });
+
+                // Add event listener for the "Submit" button in the input field container
+                document.querySelector('.changeHeadingSubmit').addEventListener('click', () => {
+                    const originalCard = this.cardcontainer.querySelector('.card:first-child');
+                    this.changeHeading(originalCard);
+                    const headingInput = originalCard.querySelector('#newHeadingInput');
+                    headingInput.style.display = 'none';
                 });
 
                 // Add this event listener with a console.log statement
