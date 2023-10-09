@@ -159,7 +159,7 @@ p {
 
             // Function to change the heading for a specific card
             changeHeading(card) {
-                const newHeading = "Hi LOL"; // Set the new heading text
+                const newHeading = "Please work OMG"; // Set the new heading text
                 const heading = card.querySelector('.heading');
                 heading.textContent = newHeading;
             }
@@ -180,6 +180,9 @@ p {
                 this.cardcontainer.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.cardcontainer.querySelector('.card:first-child')));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
+                
+                // Change the event listener for the "Change Heading" button
+                this.cardcontainer.querySelector('.changeHeading').addEventListener('click', () => this.changeHeading(this.cardcontainer.querySelector('.card:first-child')));
                 
                 // Add this event listener with a console.log statement
                 document.querySelector('.toggleButton').addEventListener('click', () => {
