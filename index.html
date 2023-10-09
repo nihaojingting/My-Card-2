@@ -101,8 +101,7 @@ p {
 
     <!-- Input field and button for changing heading -->
     <div class="change-heading-container" style="display: none;">
-        <input type="text" id="newHeadingInput" placeholder="Enter new heading">
-        <button class="button changeHeadingSubmit">Submit</button>
+        <!-- Removed input field and submit button -->
     </div>
 
     <script>
@@ -144,7 +143,7 @@ p {
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
                         } else if (button.classList.contains('changeHeading')) {
-                            this.showChangeHeadingInput(clonedCard);
+                            this.changeHeading(clonedCard); // Change the heading directly
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
                         }
@@ -163,29 +162,13 @@ p {
                 }
             }
 
-            // Function to show the input field for changing the heading
-            showChangeHeadingInput(card) {
-                const changeHeadingContainer = card.querySelector('.change-heading-container');
-                const headingInput = card.querySelector('#newHeadingInput');
-                const submitButton = card.querySelector('.changeHeadingSubmit');
-
-                headingInput.style.display = 'inline-block'; // Show the input field
-                submitButton.style.display = 'inline-block'; // Show the submit button
-
-                // Add event listener to the submit button
-                submitButton.addEventListener('click', () => {
-                    this.changeHeading(card, headingInput.value);
-                });
-            }
-
             // Function to change the heading for a specific card
-            changeHeading(card, newHeading) {
-                const heading = card.querySelector('.heading');
-                heading.textContent = newHeading;
-                const headingInput = card.querySelector('#newHeadingInput');
-                headingInput.style.display = 'none'; // Hide the input field after changing heading
-                const submitButton = card.querySelector('.changeHeadingSubmit');
-                submitButton.style.display = 'none'; // Hide the submit button after changing heading
+            changeHeading(card) {
+                const newHeading = prompt("Enter a new heading: ");
+                if (newHeading !== null) {
+                    const heading = card.querySelector('.heading');
+                    heading.textContent = newHeading;
+                }
             }
 
             // Function to remove a card
@@ -208,7 +191,7 @@ p {
                 // Add event listener for the "Change Heading" button
                 document.querySelector('.changeHeading').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    this.showChangeHeadingInput(originalCard);
+                    this.changeHeading(originalCard);
                 });
 
                 // Add this event listener with a console.log statement
