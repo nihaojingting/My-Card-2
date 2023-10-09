@@ -144,7 +144,7 @@ p {
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
                         } else if (button.classList.contains('changeHeading')) {
-                            this.changeHeading(clonedCard);
+                            this.showChangeHeadingInput(clonedCard);
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
                         }
@@ -163,13 +163,29 @@ p {
                 }
             }
 
-            // Function to change the heading for a specific card
-            changeHeading(card) {
+            // Function to show the input field for changing the heading
+            showChangeHeadingInput(card) {
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
                 const headingInput = card.querySelector('#newHeadingInput');
-                const newHeading = headingInput.value;
+                const submitButton = card.querySelector('.changeHeadingSubmit');
+
+                headingInput.style.display = 'inline-block'; // Show the input field
+                submitButton.style.display = 'inline-block'; // Show the submit button
+
+                // Add event listener to the submit button
+                submitButton.addEventListener('click', () => {
+                    this.changeHeading(card, headingInput.value);
+                });
+            }
+
+            // Function to change the heading for a specific card
+            changeHeading(card, newHeading) {
                 const heading = card.querySelector('.heading');
                 heading.textContent = newHeading;
+                const headingInput = card.querySelector('#newHeadingInput');
                 headingInput.style.display = 'none'; // Hide the input field after changing heading
+                const submitButton = card.querySelector('.changeHeadingSubmit');
+                submitButton.style.display = 'none'; // Hide the submit button after changing heading
             }
 
             // Function to remove a card
@@ -192,15 +208,7 @@ p {
                 // Add event listener for the "Change Heading" button
                 document.querySelector('.changeHeading').addEventListener('click', () => {
                     const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    const headingInput = originalCard.querySelector('#newHeadingInput');
-                    headingInput.style.display = 'inline-block'; // Show the input field
-                    headingInput.focus(); // Focus on the input field for user input
-                });
-
-                // Add event listener for the "Submit" button in the input field container
-                document.querySelector('.changeHeadingSubmit').addEventListener('click', () => {
-                    const originalCard = this.cardcontainer.querySelector('.card:first-child');
-                    this.changeHeading(originalCard);
+                    this.showChangeHeadingInput(originalCard);
                 });
 
                 // Add this event listener with a console.log statement
