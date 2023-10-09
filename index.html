@@ -179,10 +179,14 @@ p {
 
             // Function to change the heading for a specific card
             changeHeading(card, newHeading) {
-                const heading = card.querySelector('.heading');
-                heading.textContent = newHeading;
-                const changeHeadingContainer = card.querySelector('.change-heading-container');
-                changeHeadingContainer.style.display = 'none';
+                const heading = prompt("Enter a new heading: ");
+                if (newHeading) {
+                    const cards = cardcontainer.querySelectorAll('.card');
+                    cards.forEach(cardcontainer => {
+                        const heading = cardcontainer.shadowRoot.querySelector('.card');
+                        heading.textContent = newHeading;
+                    });
+                }
             }
 
             // Function to remove a card
