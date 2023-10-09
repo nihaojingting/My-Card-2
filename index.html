@@ -21,7 +21,7 @@ img {
     border: 8px solid #ccc;
     border-color: magenta;
     margin: 8px;
-    background-color: pink;
+    background-color: blue;
     transition: background-color 0.3s ease;
 }
 
@@ -106,7 +106,6 @@ p {
         class Card {
             constructor() {
                 this.cardcontainer = document.querySelector('.cardcontainer');
-                this.originalCard = document.getElementById('originalCard');
                 this.setupListeners();
             }
 
@@ -126,7 +125,7 @@ p {
 
             // Function to duplicate a card
             duplicateCard() {
-                const clonedCard = this.originalCard.cloneNode(true);
+                const clonedCard = this.cardcontainer.querySelector('.card:last-child').cloneNode(true);
                 this.cardcontainer.appendChild(clonedCard);
 
                 // Add event listeners to buttons in the duplicated card
@@ -147,46 +146,41 @@ p {
                 });
             }
 
-// Function to toggle the background color for a specific card
-toggleBackground(card) {
-    if (card) {
-        if (card.style.backgroundColor === '' || card.style.backgroundColor === 'pink') {
-            card.style.backgroundColor = 'limegreen'; // Change the background color to lime green
-        } else {
-            card.style.removeProperty('background-color'); // Remove the inline background color style
-        }
-    }
-}
-
-
+            // Function to toggle the background color for a specific card
+            toggleBackground(card) {
+                if (card) {
+                    if (card.style.backgroundColor === '' || card.style.backgroundColor !== 'limegreen') {
+                        card.style.backgroundColor = 'limegreen'; // Change the background color to lime green
+                    } else {
+                        card.style.backgroundColor = 'blue'; // Change it back to blue if it's already lime green
+                    }
+                }
+            }
 
             // Function to change the heading for a specific card
             changeHeading(card) {
-             const newHeading = "Hi LOL"; // Set the new heading text
-            const heading = card.querySelector('.heading');
-            heading.textContent = newHeading;
-}
+                const newHeading = "Hi LOL"; // Set the new heading text
+                const heading = card.querySelector('.heading');
+                heading.textContent = newHeading;
+            }
 
-
-            // Function to remove the last duplicated card
-removeLastDuplicate() {
-    const duplicatedCards = this.cardcontainer.querySelectorAll('.card');
-    const cardCount = duplicatedCards.length;
-
-    if (cardCount > 1) {
-        const lastDuplicatedCard = duplicatedCards[cardCount - 1];
-        this.cardcontainer.removeChild(lastDuplicatedCard);
-    } else {
-        alert("You must keep at least one card.");
-    }
-}
+            // Function to remove a card
+            removeCard(card) {
+                this.cardcontainer.removeChild(card);
+            }
 
             // Setup event listeners for buttons
             setupListeners() {
-    this.originalCard.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.originalCard));
-    document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
-    document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeLastDuplicate());
-}
+                this.cardcontainer.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.cardcontainer.querySelector('.card:first-child')));
+                document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
+                document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
+                
+                // Add this event listener with a console.log statement
+                document.querySelector('.toggleButton').addEventListener('click', () => {
+                    console.log("Toggle Background button clicked");
+                    this.cardcontainer.querySelectorAll('.card').forEach(card => this.toggleBackground(card));
+                });
+            }
         }
 
         // Create a Card instance to manage the functionality

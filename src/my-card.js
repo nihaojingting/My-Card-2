@@ -15,7 +15,7 @@ class MyCard extends LitElement {
   render() {
     return html`
       <div class="cardcontainer" id="cardcontainer">
-        <div class="card" id="card" style="background-color: pink">
+        <div class="card" id="card" style="background-color: blue">
           <!-- header -->
           <h2 id="heading">Jing-Ting Dong at the Library</h2>
           <!-- img -->
