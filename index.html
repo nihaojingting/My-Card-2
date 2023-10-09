@@ -144,7 +144,7 @@ p {
                         } else if (button.classList.contains('toggleButton')) {
                             this.toggleBackground(clonedCard); // Pass the cloned card
                         } else if (button.classList.contains('changeHeading')) {
-                            this.changeHeading(clonedCard); // Change the heading directly
+                            this.showChangeHeadingInput(clonedCard);
                         } else if (button.classList.contains('removeDuplicate')) {
                             this.removeCard(clonedCard);
                         }
@@ -161,6 +161,12 @@ p {
                         card.style.backgroundColor = 'blue'; // Change it back to blue if it's already lime green
                     }
                 }
+            }
+
+            // Function to show the input field for changing the heading
+            showChangeHeadingInput(card) {
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
+                changeHeadingContainer.style.display = 'block';
             }
 
             // Function to change the heading for a specific card
@@ -185,6 +191,12 @@ p {
                 this.cardcontainer.querySelector('.descButton').addEventListener('click', () => this.toggleDescription(this.cardcontainer.querySelector('.card:first-child')));
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
+
+                // Add event listener for the "Change Heading" button
+                document.querySelector('.changeHeading').addEventListener('click', () => {
+                    const originalCard = this.cardcontainer.querySelector('.card:first-child');
+                    this.showChangeHeadingInput(originalCard);
+                });
 
                 // Add this event listener with a console.log statement
                 document.querySelector('.toggleButton').addEventListener('click', () => {
