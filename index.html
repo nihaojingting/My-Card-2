@@ -203,9 +203,9 @@ p {
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
 
                 // Add this event listener with a console.log statement
-                document.querySelector('.toggleButton').addEventListener('click', () => {
-                    console.log("Toggle Background button clicked");
-                    this.cardcontainer.querySelectorAll('.card').forEach(card => this.toggleBackground(card));
+                document.querySelector('.changeHeading').addEventListener('click', () => {
+                    console.log("Change Heading button clicked");
+                    this.cardcontainer.querySelectorAll('.card').forEach(card => this.showChangeHeadingInput(card));
                 });
             }
         }
