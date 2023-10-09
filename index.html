@@ -181,9 +181,6 @@ p {
                 document.getElementById('duplicateButton').addEventListener('click', () => this.duplicateCard());
                 document.querySelector('.removeDuplicate').addEventListener('click', () => this.removeCard(this.cardcontainer.querySelector('.card:last-child')));
                 
-                // Change the event listener for the "Change Heading" button
-                this.cardcontainer.querySelector('.changeHeading').addEventListener('click', () => this.changeHeading(this.cardcontainer.querySelector('.card:first-child')));
-                
                 // Add this event listener with a console.log statement
                 document.querySelector('.toggleButton').addEventListener('click', () => {
                     console.log("Toggle Background button clicked");
