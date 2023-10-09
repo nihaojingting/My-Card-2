@@ -166,13 +166,23 @@ p {
             // Function to show the input field for changing the heading
             showChangeHeadingInput(card) {
                 const changeHeadingContainer = card.querySelector('.change-heading-container');
+                const headingInput = card.querySelector('#newHeadingInput');
+                const submitButton = card.querySelector('.changeHeadingSubmit');
+
                 changeHeadingContainer.style.display = 'block';
+
+                // Add event listener to the submit button
+                submitButton.addEventListener('click', () => {
+                    this.changeHeading(card, headingInput.value);
+                });
             }
 
             // Function to change the heading for a specific card
-            changeHeading(card) {
+            changeHeading(card, newHeading) {
                 const heading = card.querySelector('.heading');
-                heading.textContent = "Please Work OMG"; // Change the heading text directly
+                heading.textContent = newHeading;
+                const changeHeadingContainer = card.querySelector('.change-heading-container');
+                changeHeadingContainer.style.display = 'none';
             }
 
             // Function to remove a card
