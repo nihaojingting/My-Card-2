@@ -14,21 +14,6 @@ class MyCard extends LitElement {
 
   render() {
     return html`
-      <div class="cardcontainer" id="cardcontainer">
-        <div class="card" id="card" style="background-color: blue">
-          <!-- header -->
-          <h2 id="heading">Jing-Ting Dong at the Library</h2>
-          <!-- img -->
-          <img src="https://i.imgur.com/XPC2j0i.jpg" alt="Card Image">
-          <div class="card-content">
-            <!-- body paragraph -->
-            <details>
-  <summary>Summary</summary>
-  <p id="paragraph">Hi my name is Jing-Ting Dong. This is an image of me giving a thumbs up at the library while working on this coding project. I like cabbage.</p>
-</details>
-          </div>
-        </div>
-      </div>
     `;
 }
 
